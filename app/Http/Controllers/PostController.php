@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Posts\StoreRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -13,7 +15,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $records = Post::paginate(3); // simplePaginate();
+
+        return view('posts.index', [
+            'posts' => $records
+        ]);
     }
 
     /**
@@ -31,6 +37,8 @@ class PostController extends Controller
     {
         $validatedForm = $request->validated();
 
+        Arr::set($validatedForm, 'uuid', Str::uuid()); // $validatedForm['uuid'] = Str::uuid();
+
         Post::create($validatedForm);
 
         return redirect()->route('posts.index');
@@ -39,9 +47,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($post)
     {
-        //
+        // Post::where('id', $post->id)->first();
+
+        $post = Post::whereUuid($post)->first();
+
+        return view('posts.show', [
+            'post' => $post
+        ]);
     }
 
     /**

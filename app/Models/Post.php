@@ -9,4 +9,15 @@ class Post extends Model
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'uuid',
+        'user_id',
+        'title',
+        'content',
+    ];
+
+    // protected $primaryKey = 'uuid';
+
+    // protected $table = 'posts';
 }
