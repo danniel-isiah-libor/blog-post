@@ -1,7 +1,9 @@
 <x-layouts.app>
     <section class="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-8">
-        <flux:button variant="primary" color="yellow" href="{{ route('posts.edit', ['post' => $post->uuid]) }}">Edit
-        </flux:button>
+        @can('update', $post)
+            <flux:button variant="primary" color="yellow" href="{{ route('posts.edit', ['post' => $post->uuid]) }}">Edit
+            </flux:button>
+        @endcan
 
         @can('delete', $post)
             <form action="{{ route('posts.destroy', ['post' => $post]) }}" method="POST">

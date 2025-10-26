@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Middleware\AdminMiddelware;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -31,5 +32,6 @@ Route::middleware(['auth'])->group(function () {
         )
         ->name('two-factor.show');
 
-    Route::resource('/posts', PostController::class); // ->except(['index']);
+    Route::resource('/posts', PostController::class)
+        ->middleware('admin'); // ->except(['index']);
 });
