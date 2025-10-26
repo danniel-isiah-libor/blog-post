@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Middleware\AdminMiddelware;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/posts', PostController::class)
         ->middleware('admin'); // ->except(['index']);
+
+    Route::resource('/comments', CommentController::class)->only(['destroy']);
+    Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
 });

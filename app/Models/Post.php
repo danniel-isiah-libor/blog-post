@@ -37,4 +37,9 @@ class Post extends Model
 
         // $this->belongsToMany()
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

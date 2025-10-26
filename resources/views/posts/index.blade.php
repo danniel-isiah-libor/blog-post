@@ -17,7 +17,7 @@
             @foreach ($posts as $post)
                 <article class="flex max-w-xl flex-col items-start justify-between">
                     <div class="flex items-center gap-x-4 text-xs">
-                        <time datetime="2020-03-16" class="text-gray-400">{{ $post->updated_at }}</time>
+                        <time datetime="2020-03-16" class="text-gray-400">{{ $post->updated_at->diffForHumans() }}</time>
                     </div>
                     <div class="group relative grow">
                         <h3 class="mt-3 text-lg/6 font-semibold text-white group-hover:text-gray-300">

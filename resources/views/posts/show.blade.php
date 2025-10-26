@@ -34,5 +34,40 @@
                 </figcaption>
             </figure>
         </div>
+
+        <form action="{{ route('comments.store', ['post' => $post]) }}" method="POST">
+            @csrf
+
+            <flux:input name="message" type="text" placeholder="Add your comment" required />
+            <flux:button variant="primary" color="blue" type="submit">Add Comment</flux:button>
+        </form>
+
+        <ul role="list" class="divide-y divide-white/5">
+            @foreach ($post->comments as $comment)
+                <li class="flex justify-between gap-x-6 py-5">
+                    <div class="flex min-w-0 gap-x-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt=""
+                            class="size-12 flex-none rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10" />
+                        <div class="min-w-0 flex-auto">
+                            <p class="text-sm/6 font-semibold text-white">{{ $comment->message }}</p>
+                            <p class="mt-1 truncate text-xs/5 text-gray-400">{{ $comment->user->name }}</p>
+                        </div>
+                    </div>
+                    <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                        @can('delete', $comment)
+                            <form action="{{ route('comments.destroy', ['comment' => $comment]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+
+                                <flux:button variant="primary" color="red" type="submit">Delete</flux:button>
+                            </form>
+                        @endcan
+
+                        <p class="mt-1 text-xs/5 text-gray-400">{{ $comment->updated_at->diffForHumans() }}</p>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
     </section>
 </x-layouts.app>
