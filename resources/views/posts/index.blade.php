@@ -35,10 +35,10 @@
                             <p class="font-semibold text-white">
                                 <a href="#">
                                     <span class="absolute inset-0"></span>
-                                    Michael Foster
+                                    {{ $post->user->name }}
                                 </a>
                             </p>
-                            <p class="text-gray-400">Co-Founder / CTO</p>
+                            <p class="text-gray-400">{{ $post->user->email }}</p>
                         </div>
                     </div>
                 </article>

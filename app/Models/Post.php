@@ -20,4 +20,15 @@ class Post extends Model
     // protected $primaryKey = 'uuid';
 
     // protected $table = 'posts';
+
+    protected $with = ['user'];
+
+    protected $withCount = ['user'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+
+        // $this->belongsToMany()
+    }
 }
