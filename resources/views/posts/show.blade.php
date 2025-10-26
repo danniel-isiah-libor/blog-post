@@ -3,12 +3,14 @@
         <flux:button variant="primary" color="yellow" href="{{ route('posts.edit', ['post' => $post->uuid]) }}">Edit
         </flux:button>
 
-        <form action="{{ route('posts.destroy', ['post' => $post]) }}" method="POST">
-            @method('DELETE')
-            @csrf
+        @can('delete', $post)
+            <form action="{{ route('posts.destroy', ['post' => $post]) }}" method="POST">
+                @method('DELETE')
+                @csrf
 
-            <flux:button variant="primary" color="red" type="submit">Delete</flux:button>
-        </form>
+                <flux:button variant="primary" color="red" type="submit">Delete</flux:button>
+            </form>
+        @endcan
 
         <div class="mx-auto max-w-2xl lg:max-w-4xl text-center">
             <h1>{{ $post->title }}</h1>

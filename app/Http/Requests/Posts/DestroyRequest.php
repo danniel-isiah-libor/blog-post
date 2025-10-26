@@ -11,7 +11,9 @@ class DestroyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $post = $this->post; // $this->route('post');
+
+        return $this->user()->can('delete', $post);
     }
 
     /**
