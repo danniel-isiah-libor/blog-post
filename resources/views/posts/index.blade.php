@@ -4,7 +4,7 @@
             <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">From the blog</h2>
             <p class="mt-2 text-lg/8 text-gray-300">Learn how to grow your business with our expert advice.</p>
 
-            <flux:button href="{{ route('posts.create') }}" variant="primary">
+            <flux:button href="{{ route('posts.create') }}" variant="primary" color="blue">
                 Create new post
             </flux:button>
         </div>
@@ -17,7 +17,8 @@
             @foreach ($posts as $post)
                 <article class="flex max-w-xl flex-col items-start justify-between">
                     <div class="flex items-center gap-x-4 text-xs">
-                        <time datetime="2020-03-16" class="text-gray-400">{{ $post->updated_at->diffForHumans() }}</time>
+                        <time datetime="2020-03-16"
+                            class="text-gray-400">{{ $post->updated_at->diffForHumans() }}</time>
                     </div>
                     <div class="group relative grow">
                         <h3 class="mt-3 text-lg/6 font-semibold text-white group-hover:text-gray-300">
