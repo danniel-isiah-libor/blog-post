@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'third_party' => [
+        'secret' => env('API_SECRET'),
+    ]
+
 ];

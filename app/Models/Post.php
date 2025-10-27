@@ -31,6 +31,8 @@ class Post extends Model
 
     protected $withCount = ['user'];
 
+    // protected $connection = 'legacy_db';
+
     public function user()
     {
         return $this->belongsTo(User::class);
