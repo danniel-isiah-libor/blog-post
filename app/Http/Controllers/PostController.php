@@ -76,6 +76,15 @@ class PostController extends Controller
 
         Post::create($validatedForm);
 
+        // Post::updateOrCreate(
+        //     ['id' => 1],
+        //     [....]
+        // )
+
+        // Post::firstOrCreate();
+
+        // Post::upsert()
+
         return redirect()->route('posts.index');
     }
 

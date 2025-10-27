@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Posts;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class DestroyRequest extends FormRequest
 {
@@ -14,6 +15,8 @@ class DestroyRequest extends FormRequest
         $post = $this->post; // $this->route('post');
 
         return $this->user()->can('delete', $post);
+
+        // return Gate::allows('customPolicy', ['user' => $user, 'post' => $post]);
     }
 
     /**

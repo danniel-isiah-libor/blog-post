@@ -19,6 +19,7 @@ class AdminMiddelware
             return $next($request);
         } else {
             abort(403, 'Unauthorized Page');
+            // return redirect()->route('login');
         }
     }
 }

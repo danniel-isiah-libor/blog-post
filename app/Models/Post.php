@@ -42,4 +42,29 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::creating(function ($post) {
+    //         // logic before creating a post
+    //     });
+
+    //     static::created(function ($post) {
+    //         // logic after a post has been created
+    //     });
+
+    //     static::updating(function ($post) {
+    //         // logic before updating a post
+    //     });
+
+    //     static::deleting(function ($post) {
+    //         // logic before deleting a post
+    //     });
+
+    //     static::deleted(function ($post) {
+    //         // logic after a post has been deleted
+    //     });
+    // }
 }

@@ -15,6 +15,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => AdminMiddelware::class,
         ]);
+
+        // $middleware->append([
+        //     AdminMiddelware::class,
+        // ]);
+
+        // $middleware->prepend([
+        //     //
+        // ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
