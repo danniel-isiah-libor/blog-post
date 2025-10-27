@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kirschbaum\Commentions\Contracts\Commentable;
+use Kirschbaum\Commentions\HasComments;
 
 #[UsePolicy(PostPolicy::class)]
 // #[ObservedBy(PostObserver::class)]
-class Post extends Model
+class Post extends Model implements Commentable
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasComments;
 
     protected $fillable = [
         'uuid',
@@ -40,7 +42,7 @@ class Post extends Model
         // $this->belongsToMany()
     }
 
-    public function comments()
+    public function oldComments()
     {
         return $this->hasMany(Comment::class);
     }
