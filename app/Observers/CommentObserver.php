@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Comment;
 use App\Notifications\CommentNotification;
+use Filament\Notifications\Notification;
 
 class CommentObserver
 {
@@ -12,10 +13,16 @@ class CommentObserver
      */
     public function created(Comment $comment): void
     {
-        $user = $comment->post->user;
-        $post = $comment->post;
+        $user = $comment->commentable->user;
+        $post = $comment->commentable;
 
-        $user->notify(new CommentNotification($user, $post));
+        // $user->notify(new CommentNotification($user, $post));
+
+        Notification::make()
+            ->title('New comment')
+            ->body("A new comment has been added to your post: {$post->title}")
+            ->success()
+            ->sendToDatabase($user);
     }
 
     /**

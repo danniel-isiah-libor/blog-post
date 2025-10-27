@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -18,13 +19,19 @@ class PostsTable
     {
         return $table
             ->columns([
-                TextColumn::make('title'),
+                Stack::make([
+                    TextColumn::make('title'),
 
-                TextColumn::make('created_at')
-                    ->dateTime(),
+                    TextColumn::make('created_at')
+                        ->dateTime(),
 
-                TextColumn::make('updated_at')
-                    ->dateTime(),
+                    TextColumn::make('updated_at')
+                        ->dateTime(),
+                ])
+            ])
+            ->contentGrid([
+                'md' => 2,
+                'xl' => 3,
             ])
             ->filters([
                 TrashedFilter::make()
