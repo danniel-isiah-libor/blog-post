@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Kirschbaum\Commentions\Contracts\Commenter;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Passport\Contracts\OAuthenticatable;
+use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail, Commenter, HasAvatar, FilamentUser
+class User extends Authenticatable implements MustVerifyEmail, Commenter, HasAvatar, FilamentUser, OAuthenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
